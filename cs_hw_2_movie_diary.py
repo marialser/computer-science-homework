@@ -99,4 +99,5 @@ def menu():
             print("Please choose a valid option.")
 
 print("Welcome to your Movie Diary!")
+print("Choose.")
 menu()
