@@ -1,3 +1,4 @@
+import json
 movies = []
 def add_movie():
     title = input("Movie Title: ").title()
@@ -28,6 +29,7 @@ def add_movie():
             "review": review
         }
     movies.append(movie)
+    save_data()
 
 
 def view_all_movies():
@@ -72,6 +74,18 @@ def search_movie():
     if not found:
         print("Movie not found.")
 
+def save_data():
+    with open("movies.json", "w") as file:
+        json.dump(movies, file, indent=4)
+
+def load_data():
+    try:
+        with open("movies.json", "r") as file:
+            loaded_movies = json.load(file)
+        return loaded_movies
+    except FileNotFoundError:
+        return []
+
 def menu():   
     while True:
         print("Choose what you want to do:")
@@ -99,5 +113,5 @@ def menu():
             print("Please choose a valid option.")
 
 print("Welcome to your Movie Diary!")
-print("Choose.")
+movies = load_data()
 menu()
